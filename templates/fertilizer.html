@@ -1,0 +1,148 @@
+{% comment %} fertilizer recommendation {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>fertilizer</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="background-color: #1C00ff00;">
+		<div class="container">
+			<a class="navbar-brand" href="/">
+				<img src="/static/3.jpg" style="width: 90px; height: 55px" alt="">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about">Crop</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/fertilizer">Fertilizer</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+    <style>
+        html body {
+          background-color: pink;
+        }
+      </style>
+      <!--Form Section-->
+      <br><br>
+      <h2 style="text-align: center; margin: 0px; color: black">
+        <b>Take suggestions to grow certain crop</b>
+      </h2>
+      <br>
+      
+      <div style="
+          width: 350px;
+          height: 50rem;
+          margin: 0px auto;
+          color: black;
+          border-radius: 25px;
+          padding: 10px 10px;
+        ">
+        <form action="predict_fertilizer">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="temperature" style="font-size: 17px"><b>Temperature</b></label>
+            <input type="number" class="form-control" id="temperature" name="t" placeholder="Enter the nitrogen value (example:50)" style="font-weight: bold" required="">
+          </div>
+
+          <div class="form-group">
+            <label for="humidity" style="font-size: 17px"><b>Humidity</b></label>
+            <input type="number" class="form-control" id="humidity" name="h" placeholder="Enter the nitrogen value (example:50)" style="font-weight: bold" required="">
+      
+
+          <div class="form-group">
+            <label for="moisture" style="font-size: 17px"><b>Moisture</b></label>
+            <input type="number" class="form-control" id="moisture" name="m" placeholder="Enter the nitrogen value (example:50)" style="font-weight: bold" required="">
+          </div>
+
+          <div class="form-group">
+            <label for="nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
+            <input type="number" class="form-control" id="nitrogen" name="n" placeholder="Enter the nitrogen value (example:50)" style="font-weight: bold" required="">
+          </div>
+
+          <div class="form-group">
+            <label for="pottasium" style="font-size: 17px"><b>Pottasium</b></label>
+            <input type="number" class="form-control" id="pottasium" name="po" placeholder="Enter the pottasium value (example:50)" style="font-weight: bold" required="">
+          </div>
+
+          <div class="form-group">
+            <label for="phosphorous" style="font-size: 17px"><b>Phosphorous</b></label>
+            <input type="number" class="form-control" id="phosphorous" name="pho" placeholder="Enter the phosphorous value (example:50)" style="font-weight: bold" required="">
+          </div>
+      
+          
+          
+          <div class="form-group">
+            <label for="crop" style="font-size: 17px"><b>Crop you want to grow</b></label>
+            <select name="cropname" class="form-control" id="crop" placeholder="Select a crop" style="font-weight: bold" required="">
+              <option selected="">Select crop</option>
+              <option>rice</option>
+              <option>maize</option>
+              <option>chickpea</option>
+              <option>kidneybeans</option>
+              <option>pigeonpeas</option>
+              <option>mothbeans</option>
+              <option>mungbean</option>
+              <option>blackgram</option>
+              <option>lentil</option>
+              <option>pomegranate</option>
+              <option>banana</option>
+              <option>mango</option>
+              <option>grapes</option>
+              <option>watermelon</option>
+              <option>muskmelon</option>
+              <option>apple</option>
+              <option>orange</option>
+              <option>papaya</option>
+              <option>coconut</option>
+              <option>cotton</option>
+              <option>jute</option>
+              <option>coffee</option>
+            </select>
+            </div>
+            <input type="submit">
+
+          </form>
+
+          {% comment %} <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-info" style="
+                color: black;
+                font-weight: bold;
+                width: 130px;
+                height: 50px;
+                border-radius: 12px;
+                font-size: 21px;
+                       
+              ">
+              Show
+            </button>
+          </div> {% endcomment %}
+
+
+<div>
+{% block content %}
+<h2>Predicted</h2><h3>{{result}}</h3>
+{% endblock  %}
+</div>
+</body>
+</html>
